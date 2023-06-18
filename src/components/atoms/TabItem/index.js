@@ -1,36 +1,36 @@
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 import {
-  IconDoctorActive,
   IconDoctor,
-  IconMessages,
-  IconMessagesActive,
+  IconDoctorActive,
   IconHospitals,
   IconHospitalsActive,
+  IconMessages,
+  IconMessagesActive,
 } from '../../../assets';
+import { colors, fonts } from '../../../utils';
 
-const TabItem = ({onPress, onLongPress, isFocused, label}) => {
+const TabItem = ({ title, active, onPress, onLongPress }) => {
   const Icon = () => {
-    switch (label) {
-      case 'Doctor':
-        return isFocused ? <IconDoctorActive /> : <IconDoctor />;
-      case 'Message':
-        return isFocused ? <IconMessagesActive /> : <IconMessages />;
-      case 'Hospital':
-        return isFocused ? <IconHospitalsActive /> : <IconHospitals />;
-      default:
-        return isFocused ? <IconDoctorActive /> : <IconDoctor />;
+    if (title === 'Doctor') {
+      return active ? <IconDoctorActive /> : <IconDoctor />;
     }
+    if (title === 'Message') {
+      return active ? <IconMessagesActive /> : <IconMessages />;
+    }
+    if (title === 'Hospital') {
+      return active ? <IconHospitalsActive /> : <IconHospitals />;
+    }
+    return <IconDoctor />;
   };
+
   return (
     <TouchableOpacity
+      style={styles.container}
       onPress={onPress}
-      onLongPress={onLongPress}
-      style={styles.container}>
+      onLongPress={onLongPress}>
       <Icon />
-      <Text style={{color: isFocused ? '#0BCAD4' : '#495A75', marginTop: 4}}>
-        {label}
-      </Text>
+      <Text style={styles.text(active)}>{title}</Text>
     </TouchableOpacity>
   );
 };
@@ -38,9 +38,11 @@ const TabItem = ({onPress, onLongPress, isFocused, label}) => {
 export default TabItem;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
+  container: { alignItems: 'center' },
+  text: active => ({
+    fontSize: 10,
+    color: active ? colors.text.menuActive : colors.text.menuInactive,
+    fontFamily: fonts.primary[600],
+    marginTop: 4,
+  }),
 });

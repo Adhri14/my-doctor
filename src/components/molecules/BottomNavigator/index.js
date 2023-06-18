@@ -1,38 +1,19 @@
-import React from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-  Dimensions,
-} from 'react-native';
-import TabItem from '../../atoms/TabItem';
+import React from 'react'
+import { StyleSheet, Text, View, TouchableOpacity, } from 'react-native'
+import { TabItem } from '../../atoms';
+import { colors } from '../../../utils';
 
-const BottomNavigator = ({state, descriptors, navigation}) => {
-  const focusedOptions = descriptors[state.routes[state.index].key].options;
-
-  if (focusedOptions.tabBarVisible === false) {
-    return null;
-  }
-
-  const {height, width} = Dimensions.get('window');
-
+const BottomNavigator = ({ state, descriptors, navigation }) => {
   return (
-    <View
-      style={{
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        paddingVertical: 12,
-        backgroundColor: '#112340',
-      }}>
+    <View style={styles.container}>
       {state.routes.map((route, index) => {
-        const {options} = descriptors[route.key];
+        const { options } = descriptors[route.key];
         const label =
           options.tabBarLabel !== undefined
             ? options.tabBarLabel
             : options.title !== undefined
-            ? options.title
-            : route.name;
+              ? options.title
+              : route.name;
 
         const isFocused = state.index === index;
 
@@ -55,20 +36,29 @@ const BottomNavigator = ({state, descriptors, navigation}) => {
           });
         };
 
+        //dari bawah sini saja yg diubah setelah diambil dari dokumentasi
         return (
           <TabItem
             key={index}
+            title={label}
+            active={isFocused}
             onPress={onPress}
-            onLongPress={onLongPress}
-            isFocused={isFocused}
-            label={label}
-          />
+            onLongPress={onLongPress} />
         );
       })}
     </View>
-  );
-};
 
-export default BottomNavigator;
+  )
+}
 
-const styles = StyleSheet.create({});
+export default BottomNavigator
+
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingHorizontal: 53,
+    paddingVertical: 12,
+    backgroundColor: colors.secondary,
+  }
+})

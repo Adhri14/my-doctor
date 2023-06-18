@@ -1,23 +1,25 @@
-import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import {fonts} from '../../../assets';
+import React from 'react'
+import { StyleSheet, Text, TouchableOpacity } from 'react-native'
+import { colors } from '../../../utils/colors'
+import { fonts } from '../../../utils'
 
-const Link = ({title, center, onPress}) => {
-  return (
-    <Text style={styles.title(center)} onPress={onPress}>
-      {title}
-    </Text>
-  );
-};
+const Link = ({title, size, align, onPress}) => {
+    return (
+        <TouchableOpacity onPress={onPress}>
+            <Text style={styles.text(size, align)}>{title}</Text>
+        </TouchableOpacity>
+    )
+}
 
-export default Link;
+export default Link
 
 const styles = StyleSheet.create({
-  title: center => ({
-    fontFamily: fonts[400],
-    fontSize: center ? 20 : 16,
-    color: '#7D8797',
-    textAlign: center ? 'center' : 'left',
-    textDecorationLine: 'underline',
-  }),
-});
+    text:   (size, align) => ({
+        fontSize: size,
+        color: colors.text.secondary, 
+        fontFamily: fonts.primary[400],
+        textDecorationLine: 'underline',
+        textAlign: align
+    }),
+
+})

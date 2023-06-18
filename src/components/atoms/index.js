@@ -1,7 +1,12 @@
 import Button from './Button';
 import Gap from './Gap';
-import TextInput from './TextInput';
-import Link from './Link';
-import Header from './Header';
+import Input from './Input';
+import Link from './Link'
+import TabItem from './TabItem'
 
-export {Button, Gap, TextInput, Link, Header};
+export {Button, 
+    Gap, 
+    Input, 
+    Link,
+    TabItem,    
+}

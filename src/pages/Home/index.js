@@ -1,17 +1,16 @@
 import React from 'react';
 import {
+  ScrollView,
+  StatusBar,
   StyleSheet,
   Text,
-  View,
-  StatusBar,
-  SafeAreaView,
-  ScrollView,
+  View
 } from 'react-native';
-import {fonts, ILCatObat, ILCatPsikiater, ILCatUmum} from '../../assets';
-import {CardDoctor, HeaderHome, Gap} from '../../components';
+import { ILCatObat, ILCatPsikiater, ILCatUmum, fonts } from '../../assets';
+import { CardDoctor, Gap, HeaderHome } from '../../components';
 
 const Home = () => {
-  new Date().getFullYear;
+  // new Date().getFullYear;
   return (
     <>
       <StatusBar
@@ -19,9 +18,9 @@ const Home = () => {
         backgroundColor="transparent"
         translucent={true}
       />
-      <SafeAreaView style={styles.page}>
-        <ScrollView contentContainerStyle={styles.scroll}>
-          <View style={styles.container}>
+      <View style={styles.page}>
+        <View style={styles.container}>
+          <ScrollView contentContainerStyle={styles.scroll}>
             <HeaderHome name="Adhri" job="Front End Developer" />
             <Gap height={30} />
             <Text
@@ -46,9 +45,9 @@ const Home = () => {
                 </CardDoctor>
               </ScrollView>
             </View>
-          </View>
-        </ScrollView>
-      </SafeAreaView>
+          </ScrollView>
+        </View>
+      </View>
     </>
   );
 };
